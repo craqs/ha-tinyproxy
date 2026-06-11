@@ -1,0 +1,31 @@
+name: "Tinyproxy"
+version: "1.0.0"
+slug: tinyproxy
+description: "Lightweight HTTP/HTTPS forward proxy — e.g. residential egress for remote machines over Tailscale"
+url: "https://github.com/craqs/ha-tinyproxy"
+arch:
+  - aarch64
+  - amd64
+init: false
+host_network: true
+options:
+  port: 8888
+  allowed_clients:
+    - "100.64.0.0/10"
+  connect_ports:
+    - 443
+    - 80
+  disable_via_header: true
+  log_level: Notice
+  max_clients: 20
+  timeout: 600
+schema:
+  port: port
+  allowed_clients:
+    - str
+  connect_ports:
+    - int
+  disable_via_header: bool
+  log_level: list(Critical|Error|Warning|Notice|Connect|Info)
+  max_clients: int(1,)
+  timeout: int(1,)
